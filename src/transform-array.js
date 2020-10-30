@@ -14,8 +14,9 @@ module.exports = function transform(arr) {
           result.push(arr[i + 1 ]);
           break;
         case operations[1]:
-          if(i !== 0 && operations[i - 2] !== operations[2])
-            result.push(arr[i - 1]);
+          if(i !== 0 && arr[i - 2] !== operations[2]){
+            result.push(result[result.length - 1]);
+            }
           break;
         case operations[2]:
         if (arr[i + 2] === operations[1]){
