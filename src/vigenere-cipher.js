@@ -1,7 +1,7 @@
 const CustomError = require("../extensions/custom-error");
 
 class VigenereCipheringMachine {
-  VigenereCipheringMachine(value){
+  constructor(value = true){
     this.reverse = value;
   }
   encrypt(phrase, key) {
@@ -27,7 +27,7 @@ class VigenereCipheringMachine {
       result = result + phrase[i];
       }
     }
-    if (this.reverse){
+    if (!this.reverse){
       result = result.split('').reverse().join('');
     }
     return result;
@@ -43,17 +43,18 @@ class VigenereCipheringMachine {
       if (phrase[i].charCodeAt() >= 65 && 
         phrase[i].charCodeAt()<=90){
           index++;
-          console.log(alph.indexOf(phrase[i]));
           let k = (alph.indexOf(phrase[i]) + 26 - 
           alph.indexOf(key[index])) % 26;
           result = result + alph[k];
           
-          continue;
       }
       else{
       result = result + phrase[i];
       }
       
+    }
+    if (!this.reverse){
+      result = result.split('').reverse().join('');
     }
     return result;
   }
